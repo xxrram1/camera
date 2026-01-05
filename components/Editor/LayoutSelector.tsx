@@ -20,8 +20,8 @@ export default function LayoutSelector({ selectedLayout, onLayoutChange }: Layou
             key={layout.id}
             onClick={() => onLayoutChange(layout.id)}
             className={`p-4 rounded-xl border-2 transition-all flex flex-col items-center gap-2 ${selectedLayout === layout.id
-                ? 'border-gray-900 bg-gray-50 shadow-soft'
-                : 'border-gray-200 hover:border-gray-300'
+              ? 'border-gray-900 bg-gray-50 shadow-soft'
+              : 'border-gray-200 hover:border-gray-300'
               }`}
           >
             {/* Simple visual representation of aspect ratio */}
