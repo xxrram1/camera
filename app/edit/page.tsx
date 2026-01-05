@@ -92,7 +92,17 @@ export default function EditPage() {
               <ExifDataDisplay />
             </div>
 
-            <SaveAndShare imageData={imageData} />
+            <SaveAndShare
+              imageData={imageData}
+              layout={selectedLayout}
+              onLayoutChange={setSelectedLayout}
+              activeTool={activeTool}
+              onToolChange={setActiveTool}
+              dateEnabled={dateStampConfig.enabled}
+              onToggleDate={() => setDateStampConfig(prev => ({ ...prev, enabled: !prev.enabled }))}
+              drawingColor={drawingColor}
+              onColorChange={setDrawingColor}
+            />
           </div>
         </div>
       </div>
