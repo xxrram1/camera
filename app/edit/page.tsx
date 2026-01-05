@@ -1,5 +1,6 @@
 'use client'
 
+import { Suspense } from 'react'
 import { useEffect, useState, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
 import CanvasEditor, { CanvasEditorRef } from '@/components/Editor/CanvasEditor'
@@ -10,7 +11,7 @@ import SaveAndShare from '@/components/Editor/SaveAndShare'
 import ExifDataDisplay from '@/components/Editor/ExifDataDisplay'
 import { LayoutType } from '@/lib/layoutTypes'
 
-export default function EditPage() {
+function EditContent() {
   const searchParams = useSearchParams()
   const [imageData, setImageData] = useState<string | null>(null)
   const [selectedLayout, setSelectedLayout] = useState<LayoutType>('1:1')
@@ -107,6 +108,18 @@ export default function EditPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function EditPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-off-white flex items-center justify-center">
+        <div className="text-gray-500">Loading editor...</div>
+      </div>
+    }>
+      <EditContent />
+    </Suspense>
   )
 }
 
