@@ -1,5 +1,3 @@
-'use client'
-
 import { useEffect, useState, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
 import CanvasEditor, { CanvasEditorRef } from '@/components/Editor/CanvasEditor'
@@ -8,11 +6,12 @@ import LayoutSelector from '@/components/Editor/LayoutSelector'
 import DateStampCustomizer from '@/components/Editor/DateStampCustomizer'
 import SaveAndShare from '@/components/Editor/SaveAndShare'
 import ExifDataDisplay from '@/components/Editor/ExifDataDisplay'
+import { LayoutType } from '@/lib/layoutTypes'
 
 export default function EditPage() {
   const searchParams = useSearchParams()
   const [imageData, setImageData] = useState<string | null>(null)
-  const [selectedLayout, setSelectedLayout] = useState<'1:1' | '4:5' | 'grid'>('1:1')
+  const [selectedLayout, setSelectedLayout] = useState<LayoutType>('1:1')
   const [dateStampConfig, setDateStampConfig] = useState({
     enabled: true,
     color: '#000000',
@@ -67,7 +66,7 @@ export default function EditPage() {
           <div className="space-y-premium">
             <div className="bg-white rounded-premium shadow-soft-lg p-premium space-y-premium">
               <h2 className="text-xl font-semibold text-gray-800">Edit</h2>
-              
+
               <EditControls
                 activeTool={activeTool}
                 onToolChange={setActiveTool}
@@ -77,17 +76,17 @@ export default function EditPage() {
                 drawingWidth={drawingWidth}
                 onDrawingWidthChange={setDrawingWidth}
               />
-              
+
               <LayoutSelector
                 selectedLayout={selectedLayout}
                 onLayoutChange={setSelectedLayout}
               />
-              
+
               <DateStampCustomizer
                 config={dateStampConfig}
                 onConfigChange={setDateStampConfig}
               />
-              
+
               <ExifDataDisplay />
             </div>
 
